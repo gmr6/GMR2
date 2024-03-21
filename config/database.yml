@@ -81,6 +81,6 @@ development:
 #
 production:
   <<: *default
-  database: gmrr_production
-  username: postgres
-  password: <%= ENV["GMRR_DATABASE_PASSWORD"] %>
+  database: dcum478f91nrfm
+  username: wjgvnkjsrfamrg
+  password: 9f975da66e193839a37e172f90cc6669ca4286348c27b77f4d15676619420f93
