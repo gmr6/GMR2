@@ -7,6 +7,7 @@ class User < ApplicationRecord
          
   after_create :assign_default_role
   has_many :home_videos
+  has_many :home_tests
 
   def assign_default_role
    self.add_role(:customer) if self.roles.blank?

@@ -1,0 +1,80 @@
+<%= form_with(model: about) do |form| %>
+  <% if about.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(about.errors.count, "error") %> prohibited this about from being saved:</h2>
+
+      <ul>
+        <% about.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+
+  <div>
+    <%= form.label :title_ar, style: "display: block" %>
+    <%= form.text_field :title_ar %>
+  </div>
+
+  <div>
+    <%= form.label :content, style: "display: block" %>
+    <%= form.rich_text_area :content %>
+  </div>
+
+  <div>
+    <%= form.label :content_ar, style: "display: block" %>
+    <%= form.rich_text_area :content_ar %>
+  </div>
+
+  <div>
+    <%= form.label :content_2, style: "display: block" %>
+    <%= form.rich_text_area :content_2 %>
+  </div>
+
+  <div>
+    <%= form.label :content_ar_2, style: "display: block" %>
+    <%= form.rich_text_area :content_ar_2 %>
+  </div>
+
+  <div>
+    <%= form.label :founder_title, style: "display: block" %>
+    <%= form.text_field :founder_title %>
+  </div>
+
+  <div>
+    <%= form.label :founder_title_ar, style: "display: block" %>
+    <%= form.text_field :founder_title_ar %>
+  </div>
+
+  <div>
+    <%= form.label :founder_description, style: "display: block" %>
+    <%= form.rich_text_area :founder_description %>
+  </div>
+
+  <div>
+    <%= form.label :founder_description_ar, style: "display: block" %>
+    <%= form.rich_text_area :founder_description_ar %>
+  </div>
+
+  <div>
+    <%= form.label :founder_image, style: "display: block" %>
+    <%= form.file_field :founder_image %>
+  </div>
+
+  <div>
+    <%= form.label :image, style: "display: block" %>
+    <%= form.file_field :image %>
+  </div>
+
+  <%= form.hidden_field :user_id, value: current_user.id %>
+  
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

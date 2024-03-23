@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Home boxes</h1>
+
+<div id="home_boxes">
+  <% @home_boxes.each do |home_box| %>
+    <%= render home_box %>
+    <p>
+      <%= link_to "Show this home box", home_box %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New home box", new_home_box_path %>

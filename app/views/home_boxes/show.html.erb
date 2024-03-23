@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @home_box %>
+
+<div>
+  <%= link_to "Edit this home box", edit_home_box_path(@home_box) %> |
+  <%= link_to "Back to home boxes", home_boxes_path %>
+
+  <%= button_to "Destroy this home box", @home_box, method: :delete %>
+</div>

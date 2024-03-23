@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @legal_notice %>
+
+<div>
+  <%= link_to "Edit this legal notice", edit_legal_notice_path(@legal_notice) %> |
+  <%= link_to "Back to legal notices", legal_notices_path %>
+
+  <%= button_to "Destroy this legal notice", @legal_notice, method: :delete %>
+</div>

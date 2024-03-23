@@ -1,0 +1,39 @@
+<%= form_with(model: legal_notice) do |form| %>
+  <% if legal_notice.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(legal_notice.errors.count, "error") %> prohibited this legal_notice from being saved:</h2>
+
+      <ul>
+        <% legal_notice.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :title_ar, style: "display: block" %>
+    <%= form.text_field :title_ar %>
+  </div>
+
+  <div>
+    <%= form.label :content, style: "display: block" %>
+    <%= form.text_area :content %>
+  </div>
+
+  <div>
+    <%= form.label :content_ar, style: "display: block" %>
+    <%= form.text_area :content_ar %>
+  </div>
+
+  <%= form.hidden_field :user_id, value: current_user.id %>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

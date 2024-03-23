@@ -10,9 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_20_210624) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_22_153016) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "abouts", force: :cascade do |t|
+    t.string "title"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "title_ar"
+    t.string "founder_title"
+    t.string "founder_title_ar"
+    t.index ["user_id"], name: "index_abouts_on_user_id"
+  end
+
+  create_table "action_text_rich_texts", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "body"
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
+  end
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -42,12 +63,76 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_20_210624) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "contacts", force: :cascade do |t|
+    t.string "title"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "title_ar"
+    t.index ["user_id"], name: "index_contacts_on_user_id"
+  end
+
+  create_table "home_boxes", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "title_ar"
+    t.text "description_ar"
+    t.index ["user_id"], name: "index_home_boxes_on_user_id"
+  end
+
+  create_table "home_sites", force: :cascade do |t|
+    t.string "title"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "title_ar"
+    t.index ["user_id"], name: "index_home_sites_on_user_id"
+  end
+
+  create_table "home_tests", force: :cascade do |t|
+    t.string "title"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "title_ar"
+    t.index ["user_id"], name: "index_home_tests_on_user_id"
+  end
+
   create_table "home_videos", force: :cascade do |t|
     t.string "title"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_home_videos_on_user_id"
+  end
+
+  create_table "legal_notices", force: :cascade do |t|
+    t.string "title"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "title_ar"
+    t.index ["user_id"], name: "index_legal_notices_on_user_id"
+  end
+
+  create_table "logos", force: :cascade do |t|
+    t.string "title"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_logos_on_user_id"
+  end
+
+  create_table "privacies", force: :cascade do |t|
+    t.string "title"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "title_ar"
+    t.index ["user_id"], name: "index_privacies_on_user_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -58,6 +143,26 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_20_210624) do
     t.datetime "updated_at", null: false
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource"
+  end
+
+  create_table "socials", force: :cascade do |t|
+    t.string "linkind"
+    t.string "instgram"
+    t.string "x"
+    t.string "faacebook"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_socials_on_user_id"
+  end
+
+  create_table "terms", force: :cascade do |t|
+    t.string "title"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "title_ar"
+    t.index ["user_id"], name: "index_terms_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -80,7 +185,17 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_20_210624) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  add_foreign_key "abouts", "users"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "contacts", "users"
+  add_foreign_key "home_boxes", "users"
+  add_foreign_key "home_sites", "users"
+  add_foreign_key "home_tests", "users"
   add_foreign_key "home_videos", "users"
+  add_foreign_key "legal_notices", "users"
+  add_foreign_key "logos", "users"
+  add_foreign_key "privacies", "users"
+  add_foreign_key "socials", "users"
+  add_foreign_key "terms", "users"
 end
